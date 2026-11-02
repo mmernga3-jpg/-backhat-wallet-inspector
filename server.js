@@ -5,7 +5,7 @@ const providers = {
   btc: {pattern:/^(bc1[ac-hj-np-z02-9]{11,71}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})$/, endpoint:a=>`https://blockstream.info/api/address/${encodeURIComponent(a)}`},
   eth: {pattern:/^0x[a-fA-F0-9]{40}$/, endpoint:a=>`https://eth.blockscout.com/api/v2/addresses/${encodeURIComponent(a)}`}
 };
-const respond=(res,status,body,type='application/json; charset=utf-8')=>{res.writeHead(status,{'Content-Type':type,'X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'",'Cache-Control':'no-store'});res.end(typeof body==='string'||Buffer.isBuffer(body)?body:JSON.stringify(body));};
+const respond=(res,status,body,type='application/json; charset=utf-8')=>{res.writeHead(status,{'Content-Type':type,'X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; script-src 'self' 'unsafe-inline';'; base-uri 'none'; form-action 'none'",'Cache-Control':'no-store'});res.end(typeof body==='string'||Buffer.isBuffer(body)?body:JSON.stringify(body));};
 http.createServer(async(req,res)=>{
  try{
   const url=new URL(req.url,'http://localhost');
